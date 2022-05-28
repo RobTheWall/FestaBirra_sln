@@ -1,0 +1,57 @@
+﻿@page "/fetchdata"
+@using FestaBirra.Server.Models
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using FestaBirra.Shared
+@*@attribute [Authorize]*@
+@inject HttpClient Http
+
+<h1>Portate</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+@if (portates == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>CodiceMenu</th>
+                <th>Descri</th>
+                <th>IdCentriDistribuzione</th>
+                <th>IdPortate</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var portata in portates)
+            {
+                <tr>
+                    <td>@portata.CodiceMenu</td>
+                    <td>@portata.Descri</td>
+                    <td>@portata.IdCentriDistribuzione</td>
+                    <td>@portata.IdPortate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private Portate[] portates;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            portates = await Http.GetFromJsonAsync<Portate[]>("Portate");
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        }
+    }
+
+}
