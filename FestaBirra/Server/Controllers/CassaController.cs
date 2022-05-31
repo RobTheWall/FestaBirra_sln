@@ -1,8 +1,8 @@
-﻿using FestaBirra.Server.Interface;
-using FestaBirra.Server.Models;
+﻿using FestaBirra.Server.Models;
 using FestaBirra.Shared;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace FestaBirra.Server.Controllers
 {
-    [Authorize]
+    
     [ApiController]
     [Route("api")]
     public class CassaController : ControllerBase
@@ -22,13 +22,12 @@ namespace FestaBirra.Server.Controllers
         //};
 
         private readonly ILogger<CassaController> _logger;
-        private readonly IIPortate _IIPortate;
+       
         private readonly CassaContext _context;
 
-        public CassaController(ILogger<CassaController> logger, IIPortate IIPortate, CassaContext context)
+        public CassaController(ILogger<CassaController> logger, CassaContext context)
         {
-            _logger = logger;
-            _IIPortate = IIPortate;
+            _logger = logger;            
             _context = context;
         }
         [HttpGet("portate")]
@@ -36,7 +35,7 @@ namespace FestaBirra.Server.Controllers
         {
             try
             {
-                return await _IIPortate.GetPortateList ();
+                return await _context.Portates.ToListAsync();
             }
             catch (Exception ex)
             {

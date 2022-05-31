@@ -1,7 +1,8 @@
-﻿@page "/fetchdata"
+﻿@page "/listaportate"
 @using FestaBirra.Server.Models
-@using FestaBirra.Shared
 
+@using FestaBirra.Shared
+@*@attribute [Authorize]*@
 @inject HttpClient Http
 
 <h1>Portate</h1>
@@ -26,12 +27,14 @@ else
         <tbody>
             @foreach (var portata in portates)
             {
-                <tr>
-                    <td>@portata.CodiceMenu</td>
-                    <td>@portata.Descri</td>
-                    <td>@portata.IdCentriDistribuzione</td>
-                    <td>@portata.IdPortate</td>
-                </tr>
+            <tr>
+                <td>@portata.CodiceMenu</td>
+                <td>@portata.Descri</td>
+                <td>@portata.IdCentriDistribuzione</td>
+                <td>@portata.IdPortate</td>
+                @*<td><button class="btn btn-primary" @onclick="@(async () => await EditPortata(_Doctor.DoctorsId))" style="width:110px;">Edit</button></td>
+                <td><button class="btn btn-danger" @onclick="@(async () => await DeletePortata(_Doctor.DoctorsId))">Delete</button></td>*@
+            </tr>
             }
         </tbody>
     </table>
@@ -44,11 +47,11 @@ else
     {
         try
         {
-            portates = await Http.GetFromJsonAsync<Portate[]>("Portate");
+            portates = await Http.GetFromJsonAsync<Portate[]>("api/portate");
         }
-        catch (Exception ex)
+        catch (Exception exception)
         {
-          
+            
         }
     }
 
