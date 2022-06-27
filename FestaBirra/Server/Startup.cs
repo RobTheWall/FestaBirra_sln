@@ -17,7 +17,8 @@ namespace FestaBirra.Server
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            Configuration = configuration;7
+
         }
 
         public IConfiguration Configuration { get; }
