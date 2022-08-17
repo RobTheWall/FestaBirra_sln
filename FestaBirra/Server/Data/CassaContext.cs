@@ -1,10 +1,11 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using FestaBirra.Shared;
 
 #nullable disable
 
-namespace FestaBirra.Server.Models
+namespace FestaBirra.Server.Data
 {
     public partial class CassaContext : DbContext
     {

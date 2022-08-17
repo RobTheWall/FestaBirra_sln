@@ -1,5 +1,5 @@
 ﻿@page "/listaportate"
-@using FestaBirra.Server.Models
+@*@using FestaBirra.Server.Models*@
 
 @using FestaBirra.Shared
 @*@attribute [Authorize]*@
@@ -32,8 +32,8 @@ else
                 <td>@portata.Descri</td>
                 <td>@portata.IdCentriDistribuzione</td>
                 <td>@portata.IdPortate</td>
-                @*<td><button class="btn btn-primary" @onclick="@(async () => await EditPortata(_Doctor.DoctorsId))" style="width:110px;">Edit</button></td>
-                <td><button class="btn btn-danger" @onclick="@(async () => await DeletePortata(_Doctor.DoctorsId))">Delete</button></td>*@
+                @*<td><button class="btn btn-primary" @onclick="@(async () => await AddPortata(portata.IdPortate))" style="width:110px;">Edit</button></td>*@
+                @*<td><button class="btn btn-danger" @onclick="@(async () => await DeletePortata(portata.IdPortate))">Delete</button></td>*@
             </tr>
             }
         </tbody>
@@ -42,6 +42,8 @@ else
 
 @code {
     private Portate[] portates;
+
+    private Vendite[] vendites;
 
     protected override async Task OnInitializedAsync()
     {
@@ -54,5 +56,8 @@ else
             
         }
     }
+
+    
+
 
 }

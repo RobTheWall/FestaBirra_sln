@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace FestaBirra.Server.Models
+namespace FestaBirra.Shared
 {
     public partial class Portate
     {

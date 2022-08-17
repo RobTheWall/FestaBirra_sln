@@ -1,4 +1,4 @@
-﻿using FestaBirra.Server.Models;
+﻿using FestaBirra.Server.Data;
 using FestaBirra.Shared;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -36,6 +36,19 @@ namespace FestaBirra.Server.Controllers
             try
             {
                 return await _context.Portates.ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        [HttpPost("venditedettagli")]
+        public async Task<ActionResult<VenditeDettagli>> AddPortata(VenditeDettagli _vendita)
+        {
+            try
+            {
+                throw new Exception();
+                //return await _context.VenditeDettaglis.AddAsync(_vendita);
             }
             catch (Exception ex)
             {
